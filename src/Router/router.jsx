@@ -5,11 +5,17 @@ import Services from '../Pages/Services/Services';
 import Profile from '../Pages/Profile/Profile';
 import Login from '../Pages/Login/Login';
 import Signup from '../Pages/Signup/Signup';
+import MainLayout from '../MainLayout/MainLayout';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <MainLayout />,
+    children: [
+  {
+    path: "/home",
     element: <Home />,
+
   },
   {
     path: "/services",
@@ -27,6 +33,10 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
+    ]
+    
+  },
+
 ]);
 
 export default router;
