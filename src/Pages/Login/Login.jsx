@@ -27,7 +27,7 @@ const Signin = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">
             Hi there!
           </h1>
-          <p className="text-gray-500 text-center mb-6">
+          <p className="text-gray-500 text-center mb-6 text-[20px]">
             Welcome to WarmPaws. Community Dashboard
           </p>
 
