@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -21,7 +22,6 @@ const Signin = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Left Side - Form */}
       <div className="md:w-1/2 bg-white flex flex-col justify-center p-10">
         <div className="w-full max-w-md mx-auto">
           <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">
@@ -71,7 +71,9 @@ const Signin = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-2 text-gray-500"
               >
-                {showPassword ? "Hide" : "Show"}
+                <div className=" absolute right-0.5 top-0.5">
+                  {showPassword ? <FaEye className="w-[20px]" /> : <FaEyeSlash className="w-[20px]" />}
+                </div>
               </button>
             </div>
 

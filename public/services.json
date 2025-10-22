@@ -1,0 +1,122 @@
+[
+  {
+    "serviceId": 1,
+    "serviceName": "Winter Coat Fitting for Dogs",
+    "providerName": "PawCare Studio",
+    "providerEmail": "info@pawcare.com",
+    "price": 25,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Custom coat fitting and warm outfit options to keep your dog comfortable in the cold.",
+    "image": "https://i.ibb.co.com/x8HR1nw1/download-1.jpg",
+    "category": "Clothing"
+  },
+  {
+    "serviceId": 2,
+    "serviceName": "Winter Grooming & Paw Treatment",
+    "providerName": "CozyPets Grooming",
+    "providerEmail": "hello@cozypets.com",
+    "price": 30,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Professional grooming with moisturizing paw balm and winter-safe shampoo to prevent dryness.",
+    "image": "https://i.ibb.co.com/bgWH4Zdv/Fresh-Cuts-Fluffy-Vibes.jpg",
+    "category": "Grooming"
+  },
+  {
+    "serviceId": 3,
+    "serviceName": "Heated Pet Bedding Service",
+    "providerName": "WarmTail Hub",
+    "providerEmail": "support@warmtail.com",
+    "price": 40,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Premium heated pet beds designed for maximum warmth and safety during cold nights.",
+    "image": "https://i.ibb.co.com/d0GXMPXv/Cozy-Gray-Pet-Heating-Pad-Color-Gray-Size-28x16-Inch.jpg",
+    "category": "Comfort"
+  },
+  {
+    "serviceId": 4,
+    "serviceName": "Snow Walk Protection Boot Fitting",
+    "providerName": "FurStep Boutique",
+    "providerEmail": "contact@furstep.com",
+    "price": 18,
+    "rating": 4.6,
+    "slotsAvailable": 6,
+    "description": "Comfortable anti-slip snow boots to protect your pet’s paws from frostbite and salt.",
+    "image": "https://i.ibb.co.com/LXxVrGC2/Dog-Shoes-Boots.jpg",
+    "category": "Footwear"
+  },
+  {
+    "serviceId": 5,
+    "serviceName": "Winter Health Checkup for Pets",
+    "providerName": "VetCare Clinic",
+    "providerEmail": "clinic@vetcare.com",
+    "price": 35,
+    "rating": 5.0,
+    "slotsAvailable": 3,
+    "description": "Full body winter checkup by certified veterinarians to ensure your pet stays healthy and strong.",
+    "image": "https://i.ibb.co.com/qM5s9wFQ/download-2.jpg",
+    "category": "Healthcare"
+  },
+  {
+    "serviceId": 6,
+    "serviceName": "Nutritional Winter Diet Plan",
+    "providerName": "HealthyPaws Nutrition",
+    "providerEmail": "info@healthypaws.com",
+    "price": 22,
+    "rating": 4.9,
+    "slotsAvailable": 5,
+    "description": "Custom-made diet plans to boost immunity and keep your furry friends energized in winter.",
+    "image": "https://i.ibb.co.com/Wv16BS45/D870856-D-3-F75-490-B-A143-035511-D65-B75.png",
+    "category": "Nutrition"
+  },
+  {
+    "serviceId": 7,
+    "serviceName": "Warm Blanket Rental for Pets",
+    "providerName": "CozyNest Supplies",
+    "providerEmail": "care@cozynest.com",
+    "price": 15,
+    "rating": 4.5,
+    "slotsAvailable": 8,
+    "description": "Soft fleece blankets and wraps available for rent during cold months for your pet’s extra comfort.",
+    "image": "https://i.ibb.co.com/xKfD66HJ/gogobunny-Waterproof-Plush-Long-Faux-Fur-Pet-Throw-Blanket-Ultra-Soft-Fluffy-Bed-Couch-Cover-Washabl.jpg",
+    "category": "Accessories"
+  },
+  {
+    "serviceId": 8,
+    "serviceName": "Winter Exercise & Indoor Playtime",
+    "providerName": "PlayPet Arena",
+    "providerEmail": "fun@playpet.com",
+    "price": 28,
+    "rating": 4.8,
+    "slotsAvailable": 7,
+    "description": "Safe indoor activities to keep your pets active and entertained throughout the winter season.",
+    "image": "https://i.ibb.co.com/tTXXFp43/Smart-Interactive-Ball-For-Indoor-Cats-Automatic-Pet-Moving-Rolling-Ball-3-Modes-Electric-Game-For.jpg",
+    "category": "Recreation"
+  },
+  {
+    "serviceId": 9,
+    "serviceName": "Winter Bath & Dry Spa",
+    "providerName": "SnowyTails Spa",
+    "providerEmail": "spa@snowytails.com",
+    "price": 32,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Gentle winter-safe bath with fast dry technology to prevent colds after washing.",
+    "image": "https://i.ibb.co.com/QLB7Z8f/Pup-in-a-Tub.jpg",
+    "category": "Spa"
+  },
+  {
+    "serviceId": 10,
+    "serviceName": "Winter Pet Photoshoot",
+    "providerName": "PawFrame Studio",
+    "providerEmail": "studio@pawframe.com",
+    "price": 45,
+    "rating": 5.0,
+    "slotsAvailable": 2,
+    "description": "Capture your pet’s cuteness with themed winter photoshoots by professional photographers.",
+    "image": "https://i.ibb.co.com/JjpkxgH5/image.jpg",
+    "category": "Photography"
+  }
+]

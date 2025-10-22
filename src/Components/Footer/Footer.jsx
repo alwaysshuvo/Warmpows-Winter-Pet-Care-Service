@@ -8,7 +8,6 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-0">
 
-          {/* Logo + Description */}
           <div className="flex flex-col space-y-4">
             <Link to="/" className="text-3xl font-bold text-rose-500 hover:text-rose-600 transition">
               WarmPaws
@@ -17,8 +16,6 @@ const Footer = () => {
               Keeping your furry friends cozy, safe, and healthy during winter. Explore tips, services, and more for your beloved pets.
             </p>
           </div>
-
-          {/* Quick Links */}
           <div className="flex flex-col space-y-3">
             <h3 className="font-semibold text-gray-700 text-lg">Quick Links</h3>
             <Link to="/" className="hover:text-rose-500 transition">Home</Link>
@@ -27,7 +24,6 @@ const Footer = () => {
             <Link to="/privacy" className="hover:text-rose-500 transition">Privacy Policy</Link>
           </div>
 
-          {/* Contact Info */}
           <div className="flex flex-col space-y-3">
             <h3 className="font-semibold text-gray-700 text-lg">Contact</h3>
             <p>Email: <a href="mailto:info@warmpaws.com" className="hover:text-rose-500 transition">info@warmpaws.com</a></p>
@@ -35,7 +31,6 @@ const Footer = () => {
             <p>Address: Dhaka, Bangladesh</p>
           </div>
 
-          {/* Social Links */}
           <div className="flex flex-col space-y-3">
             <h3 className="font-semibold text-gray-700 text-lg">Follow Us</h3>
             <div className="flex space-x-4 mt-1">
@@ -52,8 +47,6 @@ const Footer = () => {
           </div>
 
         </div>
-
-        {/* Bottom Section */}
         <div className="mt-12 border-t border-gray-200 pt-4 text-center text-gray-500 text-sm">
           &copy; {new Date().getFullYear()} WarmPaws. All Rights Reserved.
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -98,9 +99,11 @@ const Signup = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2 text-gray-500"
+                className="absolute right-3 top-2 text-gray-500 "
               >
-                {showPassword ? "Hide" : "Show"}
+                <div className=" absolute right-0.5 top-0.5">
+                  {showPassword ? <FaEye className="w-[20px]" /> : <FaEyeSlash className="w-[20px]" />}
+                  </div> 
               </button>
             </div>
 
