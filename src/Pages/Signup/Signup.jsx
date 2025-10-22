@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup,
+} from "firebase/auth";
+import app from "../../Firebase/firebase.config";
+
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,45 +19,114 @@ const Signup = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [passwordError, setPasswordError] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => setInitialLoading(false), 400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (initialLoading) return <LoadingSpinner />;
+
+  const getPasswordValidationError = (password) => {
+    if (!/[A-Z]/.test(password))
+      return "Password must contain at least one uppercase letter.";
+    if (!/[a-z]/.test(password))
+      return "Password must contain at least one lowercase letter.";
+    if (password.length < 6)
+      return "Password must be at least 6 characters long.";
+    return "";
+  };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "password") {
+      const err = getPasswordValidationError(value);
+      setPasswordError(err);
+    }
   };
 
-  const validatePassword = (password) => {
-    const hasUpper = /[A-Z]/.test(password);
-    const hasLower = /[a-z]/.test(password);
-    const hasLength = password.length >= 6;
-    return hasUpper && hasLower && hasLength;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validatePassword(formData.password)) {
-      toast.error(
-        "Password must have uppercase, lowercase and at least 6 characters"
-      );
+    const { name, photoURL, email, password } = formData;
+    const passErr = getPasswordValidationError(password);
+
+    if (passErr) {
+      setPasswordError(passErr);
+      toast.error(passErr);
       return;
     }
-    toast.success("Signup successful!");
-    navigate("/");
+
+    setLoading(true);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      await updateProfile(user, {
+        displayName: name,
+        photoURL: photoURL,
+      });
+
+      toast.success("Your account has been created successfully. You can now log in.");
+
+      setFormData({
+        name: "",
+        email: "",
+        photoURL: "",
+        password: "",
+      });
+    } catch (error) {
+
+      let message = "An unexpected error occurred. Please try again.";
+
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          message = "This email is already in use. Please use another email or log in.";
+          break;
+        case "auth/invalid-email":
+          message = "Please enter a valid email address.";
+          break;
+        case "auth/weak-password":
+          message = "Your password is too weak. Please choose a stronger one.";
+          break;
+        case "auth/network-request-failed":
+          message = "Network error. Please check your internet connection.";
+          break;
+        case "auth/missing-email":
+          message = "Please provide an email address.";
+          break;
+        default:
+          message = "Something went wrong. Please try again later.";
+          break;
+      }
+
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleGoogleLogin = () => {
-    toast.success("Google login successful!");
-    navigate("/");
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Signed in successfully with Google!");
+    } catch (error) {
+      toast.error("Google sign-in failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-   const [loading, setLoading] = useState(true);
-    
-      useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 500);
-        return () => clearTimeout(timer);
-      }, []);
-    
-      if (loading) return <LoadingSpinner />;
-    
-    
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
@@ -77,6 +151,7 @@ const Signup = () => {
                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
+
             <div>
               <input
                 type="email"
@@ -88,17 +163,18 @@ const Signup = () => {
                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
+
             <div>
               <input
                 type="text"
                 name="photoURL"
                 value={formData.photoURL}
                 onChange={handleChange}
-                placeholder="Photo URL"
-                required
+                placeholder="Photo URL (optional)"
                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
+
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -107,24 +183,30 @@ const Signup = () => {
                 onChange={handleChange}
                 placeholder="Password"
                 required
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className={`w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${passwordError ? "border-red-500" : "border-gray-300"
+                  }`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2 text-gray-500 "
+                className="absolute right-3 top-2 text-gray-500"
               >
-                <div className=" absolute right-0.5 top-0.5">
-                  {showPassword ? <FaEye className="w-[20px]" /> : <FaEyeSlash className="w-[20px]" />}
-                  </div> 
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
               </button>
             </div>
+            {passwordError && (
+              <p className="text-red-600 text-sm mt-1">{passwordError}</p>
+            )}
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+              disabled={loading}
+              className={`w-full text-white py-2 rounded transition ${loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600"
+                }`}
             >
-              Sign Up
+              {loading ? "Creating account..." : "Sign Up"}
             </button>
           </form>
 
@@ -136,9 +218,11 @@ const Signup = () => {
 
           <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded hover:bg-gray-100 transition"
+            disabled={loading}
+            className={`w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded transition ${loading ? "opacity-60 cursor-not-allowed" : "hover:bg-gray-100"
+              }`}
           >
-            <FcGoogle size={20} /> Sign up with Google
+            <FcGoogle size={20} /> Continue with Google
           </button>
 
           <p className="text-center text-gray-500 mt-4">
@@ -149,14 +233,13 @@ const Signup = () => {
           </p>
         </div>
       </div>
+
       <div className="md:w-1/2 flex items-center justify-center p-10">
-        <div className="w-full h-full flex items-center justify-center">
-          <img
-            src="https://i.ibb.co.com/tpzwXkty/Comment-g-rer-un-chien-au-comportement-fr-n-tique-Coup-de-Pouce.jpg"
-            alt="Pets"
-            className="max-w-full max-h-[120vh] object-contain rounded-lg shadow-lg"
-          />
-        </div>
+        <img
+          src="https://i.ibb.co.com/tpzwXkty/Comment-g-rer-un-chien-au-comportement-fr-n-tique-Coup-de-Pouce.jpg"
+          alt="Pets"
+          className="max-w-full max-h-[120vh] object-contain rounded-lg shadow-lg"
+        />
       </div>
     </div>
   );
