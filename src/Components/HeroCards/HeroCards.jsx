@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 
 const HeroCards = ({ limit, showSeeAllButton }) => {
     const services = useLoaderData() || [];
     const displayedServices = limit ? services.slice(0, limit) : services;
+
+    const [loading, setLoading] = useState(true);
+    
+      useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 500);
+        return () => clearTimeout(timer);
+      }, []);
+    
+      if (loading) return <LoadingSpinner />;
+    
+    
 
     return (
         <div className="bg-gradient-to-b from-blue-50 to-white py-16 px-6" id="services">

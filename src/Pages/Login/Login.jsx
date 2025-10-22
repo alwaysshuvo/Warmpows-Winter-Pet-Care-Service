@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 
 const Signin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -19,6 +20,17 @@ const Signin = () => {
   const handleGoogleLogin = () => {
     toast.success("Signed in with Google!");
   };
+
+   const [loading, setLoading] = useState(true);
+    
+      useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 500);
+        return () => clearTimeout(timer);
+      }, []);
+    
+      if (loading) return <LoadingSpinner />;
+    
+    
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">

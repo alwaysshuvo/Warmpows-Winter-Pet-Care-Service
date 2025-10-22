@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useLoaderData } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 
 const ServiceDetails = () => {
   const { id } = useParams();
@@ -28,6 +29,15 @@ const ServiceDetails = () => {
     setFormData({ name: "", email: "" });
     setBooked(true);
   };
+  const [loading, setLoading] = useState(true);
+      
+        useEffect(() => {
+          const timer = setTimeout(() => setLoading(false), 500);
+          return () => clearTimeout(timer);
+        }, []);
+      
+        if (loading) return <LoadingSpinner />;
+      
 
   return (
     <div className="max-w-6xl mx-auto py-20 px-6">

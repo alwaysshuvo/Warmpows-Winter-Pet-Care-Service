@@ -1,30 +1,30 @@
-import React from 'react';
-import { FaPaw } from 'react-icons/fa'; 
+import React from "react";
+import { FaPaw } from "react-icons/fa";
 
 const LoadingSpinner = () => {
-    return (
-         <div className="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500">
-      
-      <h1 className="text-6xl md:text-7xl font-extrabold text-white flex items-center gap-2 animate-bounce">
-        Pet
-        <span className="relative inline-block">
-          P
-          <FaPaw className="absolute -top-4 -right-2 text-yellow-300 animate-pulse" />
-        </span>
+  return (
+    <div className="fixed inset-0 flex justify-center items-center bg-white z-50">
+
+     
+      <h1 className="text-8xl md:text-9xl font-extrabold flex items-center gap-4 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 bg-clip-text text-transparent animate-scaleUp">
+        Pet P
+        <FaPaw className="text-yellow-300 animate-pulse" />
         ws
       </h1>
+      <style>
+        {`
+          @keyframes scaleUp {
+            0% { transform: scale(0.2); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+          }
 
-      <div className="flex mt-10 space-x-2">
-        <span className="w-4 h-4 bg-white rounded-full animate-bounce delay-100"></span>
-        <span className="w-4 h-4 bg-white rounded-full animate-bounce delay-200"></span>
-        <span className="w-4 h-4 bg-white rounded-full animate-bounce delay-300"></span>
-      </div>
-
-      <p className="mt-6 text-white text-lg md:text-xl animate-pulse">
-        Loading...
-      </p>
+          .animate-scaleUp {
+            animation: scaleUp 2s ease-out forwards;
+          }
+        `}
+      </style>
     </div>
-    );
+  );
 };
 
 export default LoadingSpinner;

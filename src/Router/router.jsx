@@ -1,14 +1,15 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner"; 
-
-import Home from "../Pages/Home/Home";
-import Services from "../Pages/Services/Services";
-import Profile from "../Pages/Profile/Profile";
-import Login from "../Pages/Login/Login";
-import Signup from "../Pages/Signup/Signup";
+import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import MainLayout from "../MainLayout/MainLayout";
-import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
+
+// Lazy load pages
+const Home = lazy(() => import("../Pages/Home/Home"));
+const Services = lazy(() => import("../Pages/Services/Services"));
+const ServiceDetails = lazy(() => import("../Pages/ServiceDetails/ServiceDetails"));
+const Profile = lazy(() => import("../Pages/Profile/Profile"));
+const Login = lazy(() => import("../Pages/Login/Login"));
+const Signup = lazy(() => import("../Pages/Signup/Signup"));
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,10 @@ const router = createBrowserRouter([
             <Home />
           </Suspense>
         ),
-        loader: () => fetch("/services.json"),
+        loader: async () => {
+          const res = await fetch("/services.json");
+          return res.json();
+        },
       },
       {
         path: "/services",
@@ -31,7 +35,10 @@ const router = createBrowserRouter([
             <Services />
           </Suspense>
         ),
-        loader: () => fetch("/services.json"),
+        loader: async () => {
+          const res = await fetch("/services.json");
+          return res.json();
+        },
       },
       {
         path: "/services/:id",
@@ -40,7 +47,10 @@ const router = createBrowserRouter([
             <ServiceDetails />
           </Suspense>
         ),
-        loader: () => fetch("/services.json"),
+        loader: async () => {
+          const res = await fetch("/services.json");
+          return res.json();
+        },
       },
       {
         path: "/profile",
