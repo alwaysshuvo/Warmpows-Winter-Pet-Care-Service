@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup,} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Signin = () => {
@@ -17,9 +17,13 @@ const Signin = () => {
   const auth = getAuth();
   const { user } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+
   const from = location.state?.from?.pathname || "/";
 
+
   useEffect(() => {
+     console.log("Current pathname:", location.pathname);
+  console.log("Redirecting from:", location.state?.from?.pathname);
     const timer = setTimeout(() => setLoading(false), 400);
     return () => clearTimeout(timer);
   }, []);
@@ -35,14 +39,11 @@ const Signin = () => {
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
       toast.success("Signed in successfully!");
-      navigate(from, { replace: true });
+      navigate(from, { replace: true }); // login korar por previous page e fire
     } catch (error) {
       if (error.code === "auth/wrong-password") {
         toast.error("Incorrect password. Please try again.");
-      } else if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/invalid-credential"
-      ) {
+      } else if (error.code === "auth/user-not-found" || error.code === "auth/invalid-credential") {
         toast(
           (t) => (
             <div>
@@ -71,7 +72,7 @@ const Signin = () => {
     try {
       await signInWithPopup(auth, googleProvider);
       toast.success("Signed in with Google!");
-      navigate(from, { replace: true });
+      navigate(from, { replace: true }); 
     } catch (error) {
       toast.error("Google sign-in failed. Try again later.");
     }
@@ -95,12 +96,8 @@ const Signin = () => {
           transition={{ delay: 0.2 }}
           className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-2 text-center">
-            Welcome Back
-          </h1>
-          <p className="text-gray-500 text-center mb-6">
-            Log in to continue your journey with WarmPaws 🐾
-          </p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2 text-center">Welcome Back</h1>
+          <p className="text-gray-500 text-center mb-6">Log in to continue your journey with WarmPaws 🐾</p>
 
           <motion.button
             whileTap={{ scale: 0.97 }}
@@ -167,9 +164,7 @@ const Signin = () => {
 
           <p className="text-center text-gray-500 mt-5 text-sm">
             Don’t have an account?{" "}
-            <Link to="/signup" className="text-blue-500 font-medium hover:underline">
-              Create Account
-            </Link>
+            <Link to="/signup" className="text-blue-500 font-medium hover:underline">Create Account</Link>
           </p>
         </motion.div>
       </motion.div>
