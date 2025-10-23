@@ -4,6 +4,7 @@ import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import MainLayout from "../MainLayout/MainLayout";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import PublicRoute from "./PublicRoute/PublicRoute";
 
 const Home = lazy(() => import("../Pages/Home/Home"));
 const Services = lazy(() => import("../Pages/Services/Services"));
@@ -70,7 +71,9 @@ const router = createBrowserRouter([
         path: "/login",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
-            <Login />
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
           </Suspense>
         ),
       },
@@ -78,7 +81,9 @@ const router = createBrowserRouter([
         path: "/signup",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
-            <Signup />
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
           </Suspense>
         ),
       },
@@ -86,7 +91,9 @@ const router = createBrowserRouter([
         path: "/forgot-password",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
-            <ForgotPassword />
+            <PrivateRoute>
+              <ForgotPassword />
+            </PrivateRoute>
           </Suspense>
         ),
       },
