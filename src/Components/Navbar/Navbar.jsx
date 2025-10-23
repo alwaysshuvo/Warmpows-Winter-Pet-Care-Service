@@ -26,7 +26,7 @@ const Navbar = () => {
     <nav className="bg-white shadow-md fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex items-center space-x-2">
             <Link to="/" className="flex items-center space-x-2">
               <img
                 className="h-12 w-12 rounded-full"
@@ -38,22 +38,24 @@ const Navbar = () => {
               </h2>
             </Link>
           </div>
-          <div className="hidden md:flex space-x-8">
+
+          <div className="hidden md:flex space-x-4 items-center">
             <Link to="/" className={linkClass("/")}>Home</Link>
             <Link to="/services" className={linkClass("/services")}>Services</Link>
-            <Link to="/profile" className={linkClass("/profile")}>Profile</Link>
+            {user && (
+              <Link to="/profile" className={linkClass("/profile")}>Profile</Link>
+            )}
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
             {user ? (
-              <div className="flex items-center space-x-3 relative">
+              <>
                 <button
                   onClick={handleLogout}
-                  className="px-3 py-1 bg-rose-500 text-white rounded hover:bg-rose-600 transition"
+                  className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition"
                 >
                   Logout
                 </button>
-
                 <div
                   className="relative cursor-pointer"
                   onMouseEnter={() => setIsHovered(true)}
@@ -73,23 +75,23 @@ const Navbar = () => {
                   ) : (
                     <FaUserCircle className="w-10 h-10 text-gray-500 hover:text-rose-500 transition" />
                   )}
-
                   {isHovered && user.displayName && (
                     <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-gray-800 text-white text-sm px-3 py-1 rounded shadow-lg whitespace-nowrap">
                       {user.displayName}
                     </div>
                   )}
                 </div>
-              </div>
+              </>
             ) : (
               <Link
                 to="/login"
-                className="px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600 transition"
+                className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition"
               >
                 Login
               </Link>
             )}
           </div>
+
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -117,31 +119,29 @@ const Navbar = () => {
           >
             Services
           </Link>
-          <Link
-            to="/profile"
-            className={`${linkClass("/profile")} block px-4 py-2`}
-            onClick={() => setIsOpen(false)}
-          >
-            Profile
-          </Link>
-
+          {user && (
+            <Link
+              to="/profile"
+              className={`${linkClass("/profile")} block px-4 py-2`}
+              onClick={() => setIsOpen(false)}
+            >
+              Profile
+            </Link>
+          )}
           {user ? (
-            <>
-              <p className="px-4 py-2 text-gray-700">{user.displayName}</p>
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setIsOpen(false);
-                }}
-                className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
-              >
-                Logout
-              </button>
-            </>
+            <button
+              onClick={() => {
+                handleLogout();
+                setIsOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-semibold rounded my-1"
+            >
+              Logout
+            </button>
           ) : (
             <Link
               to="/login"
-              className="block px-4 py-2 text-white bg-rose-500 hover:bg-rose-600 transition rounded my-1"
+              className="block px-4 py-2 text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-semibold rounded my-1"
               onClick={() => setIsOpen(false)}
             >
               Login
