@@ -10,6 +10,14 @@ const ServiceDetails = () => {
 
   const [formData, setFormData] = useState({ name: "", email: "" });
   const [booked, setBooked] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
 
   if (!service) {
     return (
@@ -25,27 +33,16 @@ const ServiceDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success(`Booked "${service.serviceName}" successfully!`);
+    toast.success(`Booked "${service.serviceName}" successfully!`, { id: "book-toast" }); // 👈 একটাই toast দেখাবে
     setFormData({ name: "", email: "" });
     setBooked(true);
   };
-  const [loading, setLoading] = useState(true);
-      
-        useEffect(() => {
-          const timer = setTimeout(() => setLoading(false), 500);
-          return () => clearTimeout(timer);
-        }, []);
-      
-        if (loading) return <LoadingSpinner />;
-      
 
   return (
     <div className="max-w-6xl mx-auto py-20 px-6">
-      <Toaster position="top-right" />
+      <Toaster position="top-center" reverseOrder={false} />
 
-    
       <div className="flex flex-col md:flex-row items-center gap-14">
-
         <div className="w-full md:w-1/2 flex justify-center">
           <div className="w-full md:w-[95%] bg-white rounded-3xl shadow-xl overflow-hidden flex items-center justify-center p-8 border border-gray-100 hover:shadow-2xl transition duration-500">
             <img
@@ -139,8 +136,6 @@ const ServiceDetails = () => {
           </button>
         </form>
       </div>
-
-      
     </div>
   );
 };
