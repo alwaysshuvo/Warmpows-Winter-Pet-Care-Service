@@ -39,7 +39,7 @@ const Signin = () => {
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
       toast.success("Signed in successfully!");
-      navigate(from, { replace: true }); // login korar por previous page e fire
+      navigate(from, { replace: true });
     } catch (error) {
       if (error.code === "auth/wrong-password") {
         toast.error("Incorrect password. Please try again.");
