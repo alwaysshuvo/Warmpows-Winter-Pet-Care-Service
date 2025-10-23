@@ -4,6 +4,7 @@ import HeroCards from "../../Components/HeroCards/HeroCards";
 import WinterTips from "../../Components/WinterTips/WinterTips";
 import ExpertVets from "../ExpertVets/ExpertVets";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
+import WhyChooseUs from "../../Components/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ const Home = () => {
       <HeroCards limit={6} showSeeAllButton={true} />
       <WinterTips />
       <ExpertVets />
+      <WhyChooseUs />
     </div>
   );
 };

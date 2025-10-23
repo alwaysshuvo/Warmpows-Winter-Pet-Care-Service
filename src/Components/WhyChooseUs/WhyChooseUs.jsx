@@ -1,20 +1,19 @@
 import React from "react";
-import { FaUserMd, FaSnowflake, FaClock } from "react-icons/fa";
 
 const WhyChooseUs = () => {
   const features = [
     {
-      icon: <FaUserMd className="text-white text-3xl" />,
+      img: "https://i.ibb.co.com/0ygs8krF/Illustration-of-a-logo-of-a-veterinary-clinic.jpg",
       title: "Certified Vets",
       description: "Our expert veterinarians ensure your pets get top-quality care during winter.",
     },
     {
-      icon: <FaSnowflake className="text-white text-3xl" />,
+      img: "https://i.ibb.co.com/WNCz3mcs/download-5.jpg",
       title: "Safe & Warm Environment",
       description: "Warm and cozy spaces designed to keep your pets comfortable in the cold season.",
     },
     {
-      icon: <FaClock className="text-white text-3xl" />,
+      img: "https://i.ibb.co.com/5W15JDM4/24-Hour-Service-Label-Design-Vector-24-Hour-Service-Logo-24-Hours-Service-Tag-Emergency-Service-Icon.jpg",
       title: "24/7 Care",
       description: "Round-the-clock attention to make sure your pets are safe, happy, and healthy.",
     },
@@ -31,16 +30,13 @@ const WhyChooseUs = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-              <div className="bg-blue-500 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                {feature.icon}
-              </div>
+              <img
+                src={feature.img}
+                alt={feature.title}
+                className="mb-4 rounded-lg w-24 h-24 object-cover"
+              />
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
-              <img
-                src="https://i.ibb.co.com/Q3xxHM5N/Anicare-Hochwertige-Erg-nzungsmittel-f-r-Haustiere.jpg"
-                alt={feature.title}
-                className="mt-4 rounded-lg w-full h-32 object-cover"
-              />
             </div>
           ))}
         </div>
