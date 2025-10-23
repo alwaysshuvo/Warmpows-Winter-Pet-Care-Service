@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import MainLayout from "../MainLayout/MainLayout";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const Home = lazy(() => import("../Pages/Home/Home"));
 const Services = lazy(() => import("../Pages/Services/Services"));
@@ -33,7 +34,9 @@ const router = createBrowserRouter([
         path: "/services",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
-            <Services />
+            <PrivateRoute>
+              <Services />
+            </PrivateRoute>
           </Suspense>
         ),
         loader: async () => {
@@ -45,7 +48,9 @@ const router = createBrowserRouter([
         path: "/services/:id",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
-            <ServiceDetails />
+            <PrivateRoute>
+              <ServiceDetails />
+            </PrivateRoute>
           </Suspense>
         ),
         loader: async () => {
