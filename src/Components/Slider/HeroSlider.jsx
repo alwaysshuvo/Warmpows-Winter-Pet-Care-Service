@@ -5,9 +5,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link } from "react-router-dom";
 
 const HeroSlider = () => {
   useEffect(() => {
@@ -18,21 +19,20 @@ const HeroSlider = () => {
     {
       id: 1,
       image:
-        "https://i.ibb.co.com/23ryfY6p/Keeping-Your-Pets-Warm-During-Winter-Essential-Tips-and-Advice.jpg",
+        "https://i.ibb.co.com/B29Y12nS/download-6.jpg",
       title: "Keep Your Pets Warm This Winter 🐾",
       subtitle: "Discover cozy clothing and winter grooming options.",
     },
     {
       id: 2,
-      image:
-        "https://i.ibb.co.com/xScXBdWn/download.jpg",
+      image: "https://i.ibb.co.com/99k7YsrW/Download-free-image-of-Happy-cat-dog-friends-together-by-Aom-W-about-cat-dog-cute-animal-and-face-15.jpg",
       title: "Because They Deserve The Best Care ❄️",
       subtitle: "Trusted experts to keep your furry friends safe & happy.",
     },
     {
       id: 3,
       image:
-        "https://i.ibb.co.com/TBH2xPjy/Don-t-forget-to-Enjoy-this-moment.jpg",
+        "https://i.ibb.co.com/HTFdY6Ks/b90c04ce-9cc6-43ee-89ef-a9423a29daae.jpg",
       title: "Stay Cozy Together ❤️",
       subtitle: "Join our community for winter pet wellness tips.",
     },
@@ -45,12 +45,12 @@ const HeroSlider = () => {
         effect="fade"
         spaceBetween={0}
         centeredSlides={true}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
+        loop={true}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation={true}
+        grabCursor={true}
+        speed={1200}
         className="h-full w-full"
         fadeEffect={{ crossFade: true }}
       >
@@ -59,24 +59,45 @@ const HeroSlider = () => {
             <div
               className="relative h-full w-full bg-cover bg-center"
               style={{
-                backgroundImage: `url(${slide.image})`,
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${slide.image})`,
               }}
             >
-              <div className="absolute inset-0 bg-black/50 z-[1]"></div>
-              <div
-                data-aos="fade-up"
-                key={slide.id}
-                className="absolute inset-0 z-[2] flex flex-col justify-center items-center text-center px-6 translate-y-10 md:translate-y-16"
-              >
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 transition-opacity duration-700 ease-in-out">
+              <div className="absolute inset-0 bg-black/30 z-10"></div>
+
+              <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-6 md:px-20">
+                <motion.h1
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                  className="text-4xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg"
+                >
                   {slide.title}
-                </h1>
-                <p className="text-lg md:text-2xl text-gray-200 mb-6 max-w-2xl transition-opacity duration-700 ease-in-out">
+                </motion.h1>
+
+                <motion.p
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="text-lg md:text-2xl text-gray-200 mb-6 max-w-2xl drop-shadow"
+                >
                   {slide.subtitle}
-                </p>
-                <Link to= "/services" className="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-full text-lg transition">
-                  Explore Services
-                </Link>
+                </motion.p>
+
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  <Link
+                    to="/services"
+                    className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-pink-500 hover:to-rose-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition-all duration-300 hover:scale-105"
+                  >
+                    Explore Services
+                  </Link>
+                </motion.div>
+              </div>
+              <div className="absolute bottom-5 right-5 opacity-20 text-8xl md:text-9xl animate-bounce text-white">
+                🐾
               </div>
             </div>
           </SwiperSlide>
