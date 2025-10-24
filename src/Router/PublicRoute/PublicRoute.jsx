@@ -10,7 +10,7 @@ const PublicRoute = ({ children }) => {
     return <div className="text-center mt-10">Loading...</div>;
   }
 
-  if (user) {
+  if (user && location.pathname === "/login") {
     const from = location.state?.from?.pathname || "/";
     return <Navigate to={from} replace />;
   }

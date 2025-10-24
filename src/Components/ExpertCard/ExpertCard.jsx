@@ -8,4 +8,4 @@ const ExpertCard = () => {
     );
 };
 
-export default ExpertCard;ExpertCard
+export default ExpertCard;

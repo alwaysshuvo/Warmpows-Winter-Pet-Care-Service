@@ -41,8 +41,8 @@ const Signin = () => {
       toast.success("Signed in successfully!");
       navigate(from, { replace: true });
     } catch (error) {
-      if (error.code === "auth/wrong-password") {
-        toast.error("Incorrect password. Please try again.");
+      if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
+        toast.error("Unable to SignIn. Please check your email and Passeord...");
       } else if (error.code === "auth/user-not-found" || error.code === "auth/invalid-credential") {
         toast(
           (t) => (
