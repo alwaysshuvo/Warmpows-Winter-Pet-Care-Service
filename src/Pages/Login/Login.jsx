@@ -41,14 +41,13 @@ const Signin = () => {
       toast.success("Signed in successfully!");
       navigate(from, { replace: true });
     } catch (error) {
+     
       if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
-        toast.error("Unable to SignIn. Please check your email and Passeord...");
-      } else if (error.code === "auth/user-not-found" || error.code === "auth/invalid-credential") {
         toast(
           (t) => (
-            <div>
-              <p className="font-semibold text-red-600">User not found!</p>
-              <p className="text-sm text-gray-600">Please sign up first.</p>
+            <div className="flex flex-col justify-center">
+              <p className="font-semibold text-red-600">Incorrect Email / Password....</p>
+              <p className="text-sm text-gray-600">If You Don’t have an Account.</p>
               <button
                 onClick={() => {
                   toast.dismiss(t.id);

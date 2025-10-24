@@ -91,9 +91,7 @@ const router = createBrowserRouter([
         path: "/forgot-password",
         element: (
           <Suspense fallback={<LoadingSpinner />}>
-            <PrivateRoute>
-              <ForgotPassword />
-            </PrivateRoute>
+            <ForgotPassword />
           </Suspense>
         ),
       },

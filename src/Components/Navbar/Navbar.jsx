@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -18,8 +19,17 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logoutUser();
-      navigate("/login");
-    } catch { }
+      toast.success("Logged out successfully!", {
+        duration: 2000,
+        position: "top-center",
+      });
+      setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 100);
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Failed to log out. Please try again.");
+    }
   };
 
   return (
@@ -61,6 +71,7 @@ const Navbar = () => {
                 >
                   Logout
                 </button>
+
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
@@ -97,31 +108,13 @@ const Navbar = () => {
             className="md:hidden bg-white border-t border-gray-200 overflow-hidden"
           >
             <div className="flex flex-col px-4 py-3 space-y-2">
-              <Link
-                to="/"
-                className={`${linkClass("/")} block`}
-                onClick={() => setIsOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                to="/services"
-                className={`${linkClass("/services")} block`}
-                onClick={() => setIsOpen(false)}
-              >
-                Services
-              </Link>
+              <Link to="/" className={`${linkClass("/")} block`} onClick={() => setIsOpen(false)}>Home</Link>
+              <Link to="/services" className={`${linkClass("/services")} block`} onClick={() => setIsOpen(false)}>Services</Link>
               {user && (
-                <Link
-                  to="/profile"
-                  className={`${linkClass("/profile")} block`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Profile
-                </Link>
+                <Link to="/profile" className={`${linkClass("/profile")} block`} onClick={() => setIsOpen(false)}>Profile</Link>
               )}
 
-              {!user && (
+              {!user ? (
                 <Link
                   to="/login"
                   className="block px-4 py-2 text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-semibold rounded mt-2"
@@ -129,8 +122,17 @@ const Navbar = () => {
                 >
                   Login
                 </Link>
+              ) : (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="block w-full px-4 py-2 text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-semibold rounded mt-2"
+                >
+                  Logout
+                </button>
               )}
-
             </div>
           </motion.div>
         )}
