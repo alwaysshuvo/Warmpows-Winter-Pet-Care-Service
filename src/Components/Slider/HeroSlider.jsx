@@ -18,21 +18,19 @@ const HeroSlider = () => {
   const slides = [
     {
       id: 1,
-      image:
-        "https://i.ibb.co.com/B29Y12nS/download-6.jpg",
+      image: "https://i.ibb.co/B29Y12nS/download-6.jpg",
       title: "Keep Your Pets Warm This Winter 🐾",
       subtitle: "Discover cozy clothing and winter grooming options.",
     },
     {
       id: 2,
-      image: "https://i.ibb.co.com/99k7YsrW/Download-free-image-of-Happy-cat-dog-friends-together-by-Aom-W-about-cat-dog-cute-animal-and-face-15.jpg",
+      image: "https://i.ibb.co/99k7YsrW/Download-free-image-of-Happy-cat-dog-friends-together-by-Aom-W-about-cat-dog-cute-animal-and-face-15.jpg",
       title: "Because They Deserve The Best Care ❄️",
       subtitle: "Trusted experts to keep your furry friends safe & happy.",
     },
     {
       id: 3,
-      image:
-        "https://i.ibb.co.com/HTFdY6Ks/b90c04ce-9cc6-43ee-89ef-a9423a29daae.jpg",
+      image: "https://i.ibb.co.com/x86vBLLp/Want-to-give-back-this-season-We-will-be-accepted-all-donations-of-any-unopened-dry-or-canned-pet-fo.jpg",
       title: "Stay Cozy Together ❤️",
       subtitle: "Join our community for winter pet wellness tips.",
     },
@@ -56,49 +54,49 @@ const HeroSlider = () => {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div
-              className="relative h-full w-full bg-cover bg-center"
-              style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${slide.image})`,
-              }}
-            >
-              <div className="absolute inset-0 bg-black/30 z-10"></div>
-
-              <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-6 md:px-20">
-                <motion.h1
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
-                  className="text-4xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg"
-                >
-                  {slide.title}
-                </motion.h1>
-
-                <motion.p
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-lg md:text-2xl text-gray-200 mb-6 max-w-2xl drop-shadow"
-                >
-                  {slide.subtitle}
-                </motion.p>
-
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                  <Link
-                    to="/services"
-                    className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-pink-500 hover:to-rose-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition-all duration-300 hover:scale-105"
+            <div className="relative flex flex-col md:flex-row items-center h-full w-full">
+              <div className="absolute md:relative z-20 flex flex-col justify-center px-6 md:px-16 lg:px-24 md:w-1/2 h-1/2 md:h-full text-left">
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/0 rounded-md md:rounded-none"></div>
+                <motion.div className="relative z-10">
+                  <motion.h1
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg"
                   >
-                    Explore Services
-                  </Link>
+                    {slide.title}
+                  </motion.h1>
+                  <motion.p
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="text-base sm:text-lg md:text-2xl text-gray-200 mb-6 max-w-md drop-shadow"
+                  >
+                    {slide.subtitle}
+                  </motion.p>
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
+                  >
+                    <Link
+                      to="/services"
+                      className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-pink-500 hover:to-rose-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold shadow-lg transform transition-all duration-300 hover:scale-105"
+                    >
+                      Explore Services
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </div>
-              <div className="absolute bottom-5 right-5 opacity-20 text-8xl md:text-9xl animate-bounce text-white">
-                🐾
+              <div
+                className="absolute md:relative md:w-1/2 h-1/2 md:h-full w-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${slide.image})` }}
+              >
+                <div className="absolute inset-0 bg-black/20 md:hidden"></div>
               </div>
+            </div>
+            <div className="absolute bottom-5 right-5 opacity-20 text-7xl sm:text-8xl md:text-9xl animate-bounce text-white">
+              🐾
             </div>
           </SwiperSlide>
         ))}
