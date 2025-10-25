@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-hot-toast";
+import { div } from "framer-motion/client";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -36,7 +37,7 @@ const Navbar = () => {
     <nav className="bg-white shadow-md fixed w-full z-50 top-0 left-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-      
+
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -68,7 +69,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3 relative">
             {user ? (
               <>
- 
+
                 <div
                   className="relative"
                   onMouseEnter={() => setShowName(true)}
@@ -103,7 +104,7 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
 
-               
+
                 <button
                   onClick={handleLogout}
                   className=" md:block px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition"
@@ -111,14 +112,23 @@ const Navbar = () => {
                   Logout
                 </button>
               </>
-            ) : (
-              <Link
-                to="/login"
-                className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition"
-              >
-                Login
-              </Link>
-            )}
+            ) :
+              <div className="flex gap-2 sm:gap-3">
+                <Link
+                  to="/login"
+                  className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition text-sm sm:text-base"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-indigo-500 via-blue-800 to-pink-500 text-white font-semibold rounded hover:opacity-90 transition text-sm sm:text-base"
+                >
+                  Register
+                </Link>
+              </div>
+
+            }
           </div>
         </div>
       </div>
