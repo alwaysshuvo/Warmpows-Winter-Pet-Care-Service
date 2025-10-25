@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [showName, setShowName] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -27,15 +28,15 @@ const Navbar = () => {
         navigate("/", { replace: true });
       }, 100);
     } catch (error) {
-      console.error("Logout error:", error);
       toast.error("Failed to log out. Please try again.");
     }
   };
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
+    <nav className="bg-white shadow-md fixed w-full z-50 top-0 left-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+      
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -46,7 +47,7 @@ const Navbar = () => {
 
             <Link to="/" className="flex items-center space-x-2">
               <img
-                className="h-10 w-10 rounded-full"
+                className="h-10 w-10 rounded-full object-cover"
                 src="https://i.ibb.co.com/FkDbms56/1761128128767.png"
                 alt="Logo"
               />
@@ -59,32 +60,56 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6 items-center">
             <Link to="/" className={linkClass("/")}>Home</Link>
             <Link to="/services" className={linkClass("/services")}>Services</Link>
-            {user && <Link to="/profile" className={linkClass("/profile")}>Profile</Link>}
+            {user && (
+              <Link to="/profile" className={linkClass("/profile")}>Profile</Link>
+            )}
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 relative">
             {user ? (
               <>
+ 
+                <div
+                  className="relative"
+                  onMouseEnter={() => setShowName(true)}
+                  onMouseLeave={() => setShowName(false)}
+                >
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="User"
+                      onClick={() => navigate("/profile")}
+                      className="w-10 h-10 rounded-full object-cover border border-gray-300 hover:ring-2 hover:ring-rose-400 cursor-pointer transition"
+                    />
+                  ) : (
+                    <FaUserCircle
+                      onClick={() => navigate("/profile")}
+                      className="w-10 h-10 text-gray-500 hover:text-rose-500 cursor-pointer transition"
+                    />
+                  )}
+
+                  <AnimatePresence>
+                    {showName && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-12 left-1/2 -translate-x-1/2 bg-white text-gray-700 text-sm px-3 py-1 rounded-md shadow-md border"
+                      >
+                        {user.displayName || "User"}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+               
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition"
+                  className=" md:block px-4 py-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-semibold rounded hover:opacity-90 transition"
                 >
                   Logout
                 </button>
-
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt="User"
-                    onClick={() => navigate("/profile")}
-                    className="w-10 h-10 rounded-full object-cover border border-gray-300 hover:ring-2 hover:ring-rose-400 cursor-pointer transition"
-                  />
-                ) : (
-                  <FaUserCircle
-                    onClick={() => navigate("/profile")}
-                    className="w-10 h-10 text-gray-500 hover:text-rose-500 cursor-pointer transition"
-                  />
-                )}
               </>
             ) : (
               <Link
@@ -105,16 +130,34 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-gray-200 overflow-hidden"
+            className="md:hidden bg-white border-t border-gray-200 overflow-hidden shadow-sm"
           >
             <div className="flex flex-col px-4 py-3 space-y-2">
-              <Link to="/" className={`${linkClass("/")} block`} onClick={() => setIsOpen(false)}>Home</Link>
-              <Link to="/services" className={`${linkClass("/services")} block`} onClick={() => setIsOpen(false)}>Services</Link>
+              <Link
+                to="/"
+                className={`${linkClass("/")} block`}
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to="/services"
+                className={`${linkClass("/services")} block`}
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
               {user && (
-                <Link to="/profile" className={`${linkClass("/profile")} block`} onClick={() => setIsOpen(false)}>Profile</Link>
+                <Link
+                  to="/profile"
+                  className={`${linkClass("/profile")} block`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Profile
+                </Link>
               )}
 
-              {!user ? (
+              {!user && (
                 <Link
                   to="/login"
                   className="block px-4 py-2 text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-semibold rounded mt-2"
@@ -122,16 +165,6 @@ const Navbar = () => {
                 >
                   Login
                 </Link>
-              ) : (
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setIsOpen(false);
-                  }}
-                  className="block w-full px-4 py-2 text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 font-semibold rounded mt-2"
-                >
-                  Logout
-                </button>
               )}
             </div>
           </motion.div>

@@ -23,7 +23,8 @@ const ForgotPassword = () => {
       await sendPasswordResetEmail(auth, email);
       toast.success("Reset link sent to your email!");
     
-      window.location.href = "https://mail.google.com/";
+      window.open("https://mail.google.com/", "_blank");
+
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         toast.error("No account found with this email.");

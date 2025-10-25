@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 import LoadingAnimation from "../../Components/LoadingSpinner/LoadingAnimation";
-import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, signOut, } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
 
 const auth = getAuth(app);
@@ -22,6 +22,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setInitialLoading(false), 400);
@@ -31,19 +32,15 @@ const Signup = () => {
   if (initialLoading) return <LoadingSpinner />;
 
   const getPasswordValidationError = (password) => {
-    if (!/[A-Z]/.test(password))
-      return "Password must contain at least one uppercase letter.";
-    if (!/[a-z]/.test(password))
-      return "Password must contain at least one lowercase letter.";
-    if (password.length < 6)
-      return "Password must be at least 6 characters long.";
+    if (!/[A-Z]/.test(password)) return "Password must contain at least one uppercase letter.";
+    if (!/[a-z]/.test(password)) return "Password must contain at least one lowercase letter.";
+    if (password.length < 6) return "Password must be at least 6 characters long.";
     return "";
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-
     if (name === "password") {
       const err = getPasswordValidationError(value);
       setPasswordError(err);
@@ -67,9 +64,10 @@ const Signup = () => {
       const user = userCredential.user;
 
       await updateProfile(user, { displayName: name, photoURL: photoURL });
+      await signOut(auth);
 
-      toast.success("Your account has been created successfully. You can now log in.");
-      await auth.signOut();
+      toast.success("Your account has been created successfully!");
+      navigate("/");
 
       setFormData({
         name: "",
@@ -79,7 +77,6 @@ const Signup = () => {
       });
     } catch (error) {
       let message = "An unexpected error occurred. Please try again.";
-
       switch (error.code) {
         case "auth/email-already-in-use":
           message = "This email is already in use. Please use another email or log in.";
@@ -97,7 +94,6 @@ const Signup = () => {
           message = "Please provide an email address.";
           break;
       }
-
       toast.error(message);
     } finally {
       setLoading(false);
@@ -109,6 +105,7 @@ const Signup = () => {
     try {
       await signInWithPopup(auth, googleProvider);
       toast.success("Signed in successfully with Google!");
+      navigate("/");
     } catch (error) {
       toast.error("Google sign-in failed. Please try again.");
     } finally {
@@ -120,12 +117,8 @@ const Signup = () => {
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="md:w-1/2 bg-white flex flex-col justify-center p-10">
         <div className="w-full max-w-md mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">
-            Sign Up Please
-          </h1>
-          <p className="text-gray-500 text-center mb-6">
-            Join Our WarmPaws Community
-          </p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">Sign Up Please</h1>
+          <p className="text-gray-500 text-center mb-6">Join Our WarmPaws Community</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
@@ -153,7 +146,7 @@ const Signup = () => {
               name="photoURL"
               value={formData.photoURL}
               onChange={handleChange}
-              placeholder="Photo URL (optional)"
+              placeholder="Photo URL"
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
@@ -177,9 +170,8 @@ const Signup = () => {
                 {showPassword ? <FaEye /> : <FaEyeSlash />}
               </button>
             </div>
-            {passwordError && (
-              <p className="text-red-600 text-sm mt-1">{passwordError}</p>
-            )}
+
+            {passwordError && <p className="text-red-600 text-sm mt-1">{passwordError}</p>}
 
             <button
               type="submit"
@@ -192,8 +184,7 @@ const Signup = () => {
             >
               {loading ? (
                 <>
-                  <LoadingAnimation small={true} />
-                  Creating...
+                  <LoadingAnimation small={true} /> Creating...
                 </>
               ) : (
                 "Sign Up"
