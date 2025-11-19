@@ -30,7 +30,8 @@ Warmpaws is a feature-rich winter pet care web application where users can:
 
 ## 📸 Screenshots
 
-> *(If you send the screenshots, I will add them here beautifully.)*
+### 🐾 Warmpaws Homepage Preview
+![Homepage](https://api.pikwy.com/web/691d876396641b00f53002b6.jpg)
 
 ---
 
