@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import servicesData from "../../data/../../public/services.json";
 
-const HeroCards = ({ limit, showSeeAllButton }) => {
-  const services = useLoaderData() || [];
-  const displayedServices = limit ? services.slice(0, limit) : services;
-
+const HeroCards = ({ limit = null, services = null, showSeeAllButton = false }) => {
   const [loading, setLoading] = useState(true);
+
+  const allServices = services || servicesData;
+
+  // correct limited list
+  const displayed = limit ? allServices.slice(0, limit) : allServices;
+
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
@@ -16,48 +20,48 @@ const HeroCards = ({ limit, showSeeAllButton }) => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="py-14 px-4">
-      <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-
-        {displayedServices.map((service) => (
+    <div className="py-10 px-4 bg-gradient-to-b from-blue-50/60 to-white">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
+        
+        {displayed.map((service) => (
           <div
             key={service.serviceId}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
+            className="bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:-translate-y-2"
           >
             <img
               src={service.image}
               alt={service.serviceName}
-              className="h-48 w-full object-cover rounded-t-2xl"
+              className="h-48 w-full object-cover"
             />
 
-            <div className="p-5 flex flex-col flex-grow">
-              <div className="flex items-center justify-between mb-2">
-                <span className="bg-blue-100 text-blue-700 px-3 py-1 text-xs font-semibold rounded-full">
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-3">
+                <span className="px-3 py-1 text-xs font-semibold bg-blue-100 text-blue-700 rounded-full">
                   {service.category}
                 </span>
 
-                <div className="flex items-center text-yellow-500 text-sm">
+                <div className="flex items-center text-yellow-500">
                   <FaStar className="mr-1" />
-                  {service.rating}
+                  <span className="font-semibold text-gray-700">{service.rating}</span>
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-gray-800 mb-1">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
                 {service.serviceName}
               </h3>
 
-              <p className="text-gray-600 text-sm mb-3 line-clamp-2 flex-grow">
+              <p className="text-gray-600 text-sm line-clamp-2 mb-4">
                 {service.description}
               </p>
 
-              <div className="flex items-center justify-between mt-auto pt-3">
-                <span className="text-blue-700 font-semibold text-lg">
+              <div className="flex items-center justify-between">
+                <span className="text-blue-700 font-bold text-lg">
                   ${service.price}
                 </span>
 
                 <Link
                   to={`/services/${service.serviceId}`}
-                  className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-md hover:scale-105 transition"
+                  className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow hover:bg-blue-700 transition"
                 >
                   View Details
                 </Link>
@@ -65,18 +69,8 @@ const HeroCards = ({ limit, showSeeAllButton }) => {
             </div>
           </div>
         ))}
-      </div>
 
-      {showSeeAllButton && (
-        <div className="text-center mt-10">
-          <Link
-            to="/services"
-            className="bg-gradient-to-r from-purple-700 to-purple-900 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transition"
-          >
-            See All Services
-          </Link>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

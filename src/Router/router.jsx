@@ -10,20 +10,22 @@ import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 // Lazy Loaded Pages
 const Home = lazy(() => import("../Pages/Home/Home"));
 const Services = lazy(() => import("../Pages/Services/Services"));
-const ServiceDetails = lazy(() => import("../Pages/ServiceDetails/ServiceDetails"));
+const ServiceDetails = lazy(() =>
+  import("../Pages/ServiceDetails/ServiceDetails")
+);
 const Profile = lazy(() => import("../Pages/Profile/Profile"));
 const Login = lazy(() => import("../Pages/Login/Login"));
 const Signup = lazy(() => import("../Pages/Signup/Signup"));
 const About = lazy(() => import("../Pages/About/About"));
 const Contact = lazy(() => import("../Pages/Contact/Contact"));
 const Support = lazy(() => import("../Pages/Support/Support"));
+const NotFound = lazy(() => import("../Pages/ErrorPage/NotFound"));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-
       {
         index: true,
         element: (
@@ -125,6 +127,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingSpinner />}>
             <Support />
+          </Suspense>
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <NotFound />
           </Suspense>
         ),
       },
