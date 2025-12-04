@@ -114,7 +114,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-col md:flex-row bg-white">
       <div className="md:w-1/2 bg-white flex flex-col justify-center p-10">
         <div className="w-full max-w-md mx-auto">
           <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">Sign Up Please</h1>
@@ -128,7 +128,7 @@ const Signup = () => {
               onChange={handleChange}
               placeholder="Your Name"
               required
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 bg-white text-gray-900 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
             <input
@@ -138,7 +138,7 @@ const Signup = () => {
               onChange={handleChange}
               placeholder="Your Email"
               required
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 bg-white text-gray-900 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
             <input
@@ -147,7 +147,7 @@ const Signup = () => {
               value={formData.photoURL}
               onChange={handleChange}
               placeholder="Photo URL"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 bg-white text-gray-900 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
             <div className="relative">
@@ -158,7 +158,7 @@ const Signup = () => {
                 onChange={handleChange}
                 placeholder="Password"
                 required
-                className={`w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                className={`w-full border rounded px-3 py-2 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                   passwordError ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -201,7 +201,7 @@ const Signup = () => {
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className={`w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded transition ${
+            className={`w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded transition bg-white text-gray-900 ${
               loading ? "opacity-60 cursor-not-allowed" : "hover:bg-gray-100"
             }`}
           >
@@ -218,7 +218,7 @@ const Signup = () => {
         </div>
       </div>
 
-      <div className="md:w-1/2 flex items-center justify-center p-10">
+      <div className="md:w-1/2 flex items-center justify-center p-10 bg-gray-50">
         <img
           src="https://i.ibb.co/tpzwXkty/Comment-g-rer-un-chien-au-comportement-fr-n-tique-Coup-de-Pouce.jpg"
           alt="Pets"

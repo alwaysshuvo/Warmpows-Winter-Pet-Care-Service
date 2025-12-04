@@ -39,7 +39,7 @@ const ServiceDetails = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-20 px-6">
+    <div className="max-w-6xl mx-auto py-20 px-6 bg-white min-h-screen">
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="flex flex-col md:flex-row items-center gap-14">
@@ -100,7 +100,7 @@ const ServiceDetails = () => {
         </p>
       </div>
 
-      <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 p-10 rounded-3xl shadow-2xl max-w-lg mx-auto">
+      <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 p-10 rounded-3xl shadow-2xl max-w-lg mx-auto border border-gray-200">
         <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Book This Service
         </h3>
@@ -112,7 +112,7 @@ const ServiceDetails = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300"
+            className="border border-gray-300 bg-white text-gray-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300"
           />
           <input
             type="email"
@@ -121,7 +121,7 @@ const ServiceDetails = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300"
+            className="border border-gray-300 bg-white text-gray-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300"
           />
           <button
             type="submit"

@@ -19,14 +19,14 @@ const HeroCards = ({ limit, showSeeAllButton }) => {
     
 
     return (
-        <div className="bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 py-16 px-6 transition-colors duration-300" id="services">
+        <div className="bg-gradient-to-b from-blue-50 to-white py-16 px-6" id="services">
 
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-center">
                 {displayedServices.map((service) => (
                     <div
                         key={service.serviceId}
-                        className="bg-white dark:bg-gray-800 rounded-2xl shadow-md dark:shadow-gray-900/30 hover:shadow-2xl dark:hover:shadow-gray-900/60 transform hover:-translate-y-2 transition duration-300 border border-gray-100 dark:border-gray-700"
+                        className="bg-white rounded-2xl shadow-md hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 border border-gray-100"
                     >
                         <img
                             src={service.image}
@@ -35,25 +35,25 @@ const HeroCards = ({ limit, showSeeAllButton }) => {
                         />
                         <div className="p-5">
                             <div className="flex items-center justify-between mb-2">
-                                <span className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-3 py-1 text-xs font-semibold rounded-full">
+                                <span className="bg-blue-100 text-blue-700 px-3 py-1 text-xs font-semibold rounded-full">
                                     {service.category}
                                 </span>
-                                <div className="flex items-center text-yellow-500 dark:text-yellow-400">
+                                <div className="flex items-center text-yellow-500">
                                     <FaStar className="mr-1" />
-                                    <span className="text-gray-700 dark:text-gray-300 font-semibold">{service.rating}</span>
+                                    <span className="text-gray-700 font-semibold">{service.rating}</span>
                                 </div>
                             </div>
 
-                            <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-1">
+                            <h3 className="text-lg font-bold text-gray-800 mb-1">
                                 {service.serviceName}
                             </h3>
 
-                            <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
+                            <p className="text-gray-600 text-sm mb-3 line-clamp-2">
                                 {service.description}
                             </p>
 
                             <div className="flex items-center justify-between mt-4">
-                                <span className="text-blue-700 dark:text-blue-300 font-semibold text-lg">
+                                <span className="text-blue-700 font-semibold text-lg">
                                     ${service.price}
                                 </span>
 

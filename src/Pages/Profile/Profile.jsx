@@ -25,7 +25,7 @@ const Profile = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col items-center justify-center h-screen text-center"
+        className="flex flex-col items-center justify-center h-screen text-center bg-white"
       >
         <h2 className="text-2xl font-semibold text-gray-700 mb-2">
           Please log in to see your profile.
@@ -113,7 +113,7 @@ const Profile = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-4 text-left"
+            className="mt-4 text-left bg-gray-50 rounded-lg p-4"
           >
             <label className="block text-gray-700 font-medium mb-1">
               Name
@@ -122,7 +122,7 @@ const Profile = () => {
               type="text"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 bg-white text-gray-900 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
             <label className="block text-gray-700 font-medium mb-1">
@@ -132,7 +132,7 @@ const Profile = () => {
               type="text"
               value={photoURL}
               onChange={(e) => setPhotoURL(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 bg-white text-gray-900 rounded-lg px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
             {message && (

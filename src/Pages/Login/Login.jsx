@@ -93,7 +93,7 @@ const Signin = () => {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl"
+          className="w-full max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-200"
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-2 text-center">Welcome Back</h1>
           <p className="text-gray-500 text-center mb-6">Log in to continue your journey with WarmPaws 🐾</p>
@@ -101,7 +101,7 @@ const Signin = () => {
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2.5 rounded-lg bg-white shadow-sm transition hover:bg-gray-50 mb-4"
+            className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2.5 rounded-lg bg-white shadow-sm transition hover:bg-gray-50 mb-4 text-gray-900"
           >
             <FcGoogle size={22} /> Continue with Google
           </motion.button>
@@ -120,7 +120,7 @@ const Signin = () => {
               onChange={handleChange}
               placeholder="Your email"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 bg-white text-gray-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
 
             <div className="relative">
@@ -131,7 +131,7 @@ const Signin = () => {
                 onChange={handleChange}
                 placeholder="Password"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full border border-gray-300 bg-white text-gray-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
               <button
                 type="button"

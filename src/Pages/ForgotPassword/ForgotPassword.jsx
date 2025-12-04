@@ -39,9 +39,9 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-6">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md border border-gray-200">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-900">
           Reset Your Password
         </h2>
 
@@ -52,13 +52,13 @@ const ForgotPassword = () => {
             placeholder="Enter your registered email"
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-300 bg-white text-gray-900 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition disabled:opacity-50"
           >
             {loading ? "Sending..." : "Reset Password"}
           </button>

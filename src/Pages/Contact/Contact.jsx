@@ -12,14 +12,14 @@ const Contact = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen py-16 px-5 dark:bg-gray-900 dark:text-gray-200">
+    <div className="min-h-screen py-16 px-5 bg-white text-gray-900">
       <div className="max-w-6xl mx-auto">
 
-        <h1 className="text-4xl font-bold text-center mb-6 dark:text-white">
+        <h1 className="text-4xl font-bold text-center mb-6 text-gray-900">
           Contact <span className="text-blue-600">Us</span>
         </h1>
 
-        <p className="text-center max-w-2xl mx-auto text-gray-600 dark:text-gray-300 mb-12">
+        <p className="text-center max-w-2xl mx-auto text-gray-600 mb-12">
           Have questions? Need help? We’re here for you.  
           Send us a message or reach us through the following contact details.
         </p>
@@ -28,34 +28,34 @@ const Contact = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold dark:text-white">Get in Touch</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">Get in Touch</h2>
 
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600">
               <strong>Email:</strong> support@warmpaws.com
             </p>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600">
               <strong>Phone:</strong> +880 123 456 789
             </p>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600">
               <strong>Address:</strong> Dhaka, Bangladesh
             </p>
           </div>
 
           {/* Form */}
-          <form className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-4">
+          <form className="bg-white p-6 rounded-lg shadow space-y-4 border border-gray-200">
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full p-3 bg-gray-100 dark:bg-gray-900 rounded border dark:border-gray-700"
+              className="w-full p-3 bg-gray-50 border border-gray-300 rounded text-gray-900"
             />
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full p-3 bg-gray-100 dark:bg-gray-900 rounded border dark:border-gray-700"
+              className="w-full p-3 bg-gray-50 border border-gray-300 rounded text-gray-900"
             />
             <textarea
               placeholder="Your Message"
-              className="w-full p-3 bg-gray-100 dark:bg-gray-900 rounded border dark:border-gray-700 h-32"
+              className="w-full p-3 bg-gray-50 border border-gray-300 rounded text-gray-900 h-32"
             />
             <button
               className="px-5 py-3 w-full text-white rounded bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"

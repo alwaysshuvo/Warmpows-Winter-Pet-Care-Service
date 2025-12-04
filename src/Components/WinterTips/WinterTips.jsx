@@ -3,8 +3,8 @@ import winterTips from "../../data/WinterTips/winterTips";
 
 const WinterTips = () => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-800 py-16 px-6 transition-colors duration-300">
-      <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-12">
+    <div className="bg-gray-50 py-16 px-6">
+      <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
         🐾 Winter Care Tips for Pets
       </h2>
 
@@ -12,11 +12,11 @@ const WinterTips = () => {
         {winterTips.map((tip) => (
           <div
             key={tip.id}
-            className="bg-white dark:bg-gray-700 rounded-2xl shadow-md dark:shadow-gray-900/30 p-6 hover:shadow-xl dark:hover:shadow-gray-900/50 transition duration-300"
+            className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 border border-gray-200"
           >
             <div className="text-4xl mb-4">{tip.icon}</div>
-            <h3 className="text-xl font-bold dark:text-gray-100 mb-2">{tip.title}</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">{tip.description}</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{tip.title}</h3>
+            <p className="text-gray-600 text-sm">{tip.description}</p>
           </div>
         ))}
       </div>

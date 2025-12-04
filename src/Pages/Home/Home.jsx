@@ -18,7 +18,7 @@ const Home = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 min-h-screen overflow-hidden transition-colors duration-300">
+    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -34,10 +34,10 @@ const Home = () => {
         transition={{ duration: 0.6 }}
         className="text-center mt-16 px-4"
       >
-        <h2 className="text-4xl md:text-5xl font-extrabold text-blue-800 dark:text-blue-400 mb-3">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-blue-800 mb-3">
           ❄️ Popular Winter Pet Care Services
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+        <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
           Keep your furry friends warm, happy, and healthy this season with our trusted care services.
         </p>
         <HeroCards limit={6} showSeeAllButton={true} />
@@ -77,7 +77,7 @@ const Home = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="text-center text-gray-500 dark:text-gray-400 text-sm py-6"
+        className="text-center text-gray-500 text-sm py-6"
       >
         © {new Date().getFullYear()} WarmPaws 🐾 — Caring for your pets with love.
       </motion.footer>
