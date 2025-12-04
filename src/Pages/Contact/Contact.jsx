@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
+
   return (
     <div className="min-h-screen py-16 px-5 dark:bg-gray-900 dark:text-gray-200">
       <div className="max-w-6xl mx-auto">

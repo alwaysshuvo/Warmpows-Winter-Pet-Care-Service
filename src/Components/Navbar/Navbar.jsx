@@ -18,7 +18,7 @@ const Navbar = () => {
   const linkClass = (path) =>
     location.pathname === path
       ? "text-rose-500 dark:text-blue-400 border-b-2 border-rose-500 dark:border-blue-400 font-medium"
-      : "text-gray-700 dark:text-gray-300 hover:text-rose-500 dark:hover:text-blue-400 font-medium";
+      : "text-gray-900 dark:text-white hover:text-rose-500 dark:hover:text-blue-400 font-medium";
 
   const handleLogout = async () => {
     try {
@@ -39,7 +39,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-2xl md:hidden focus:outline-none dark:text-white"
+              className="text-2xl md:hidden focus:outline-none text-gray-900 dark:text-white"
             >
               ☰
             </button>
@@ -50,7 +50,7 @@ const Navbar = () => {
                 src="https://i.ibb.co.com/FkDbms56/1761128128767.png"
                 alt="Logo"
               />
-              <h2 className="text-xl font-bold dark:text-white">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                 Warm<span className="text-blue-600">Paws</span>
               </h2>
             </Link>
@@ -73,12 +73,15 @@ const Navbar = () => {
           <div className="flex items-center gap-2 relative">
 
             {/* Dark Mode Toggle */}
-            <button
+            <motion.button
               onClick={toggleDarkMode}
-              className="px-3 py-2 rounded-full border bg-gray-200 dark:bg-gray-700 dark:text-white"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-3 py-2 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-yellow-300 font-bold transition-all duration-300 hover:border-blue-400 dark:hover:border-yellow-400"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {darkMode ? "🌙" : "☀️"}
-            </button>
+            </motion.button>
 
             {user ? (
               <>
@@ -108,7 +111,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
-                        className="absolute top-12 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-sm px-3 py-1 rounded-md shadow-md border dark:border-gray-700"
+                        className="absolute top-12 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200 text-sm px-3 py-1 rounded-md shadow-md border border-gray-200 dark:border-gray-700"
                       >
                         {user.displayName || "User"}
                       </motion.div>

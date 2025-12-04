@@ -37,7 +37,7 @@ const HeroSlider = () => {
   ];
 
   return (
-    <div className="relative w-full h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden bg-white">
+    <div className="relative w-full h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
@@ -90,7 +90,7 @@ const HeroSlider = () => {
               </div>
 
               <div
-                className="absolute md:relative md:w-1/2 w-full h-full bg-center bg-no-repeat bg-contain md:bg-cover transition-all duration-500 bg-white"
+                className="absolute md:relative md:w-1/2 w-full h-full bg-center bg-no-repeat bg-contain md:bg-cover transition-all duration-500 bg-white dark:bg-gray-800"
                 style={{ backgroundImage: `url(${slide.image})` }}
               >
                 <div className="absolute inset-0 bg-black/20 md:hidden"></div>

@@ -6,3 +6,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Minimal global styles - prefer Tailwind classes for colors.
+   Avoid hard-coded dark hex colors here so Tailwind's `dark:` utilities
+   control them per-component. */
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Global theme transitions only (no color overrides) */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Keep transitions for child elements but do not set hard colors here. */
+.dark * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Keep animations definitions (no color values) */
+@keyframes scaleUp {
+  0% { transform: scale(0.2); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-scaleUp {
+  animation: scaleUp 2s ease-out forwards;
+}
