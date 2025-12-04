@@ -6,16 +6,27 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-rose-50 to-white text-gray-700 mt-12 shadow-inner">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+
         <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-0">
 
           <div className="flex flex-col space-y-4">
-              <Link to="/" className="text-3xl font-bold text-rose-500 hover:text-rose-600 transition">
-              WarmPaws
+            <Link to="/" className="flex items-center gap-0 group">
+              <img
+                className="h-15 w-15 rounded-full object-cover"
+                src="https://i.ibb.co.com/RpRsWh80/Logo-removebg-preview.png"
+                alt="Logo"
+              />
+              <h2 className="text-2xl font-bold text-gray-900 group-hover:text-rose-600 transition -ml-3">
+                Warm<span className="text-blue-600">Paws</span>
+              </h2>
             </Link>
-            <p className="text-gray-500 max-w-xs">
-              Keeping your furry friends cozy, safe, and healthy during winter. Explore tips, services, and more for your beloved pets.
+
+            <p className="text-gray-500 max-w-xs leading-relaxed">
+              Keeping your furry friends cozy, safe, and healthy during winter.  
+              Explore tips, services, and more for your beloved pets.
             </p>
           </div>
+
           <div className="flex flex-col space-y-3">
             <h3 className="font-semibold text-gray-700 text-lg">Quick Links</h3>
             <Link to="/" className="hover:text-rose-500 transition">Home</Link>
@@ -34,22 +45,42 @@ const Footer = () => {
           <div className="flex flex-col space-y-3">
             <h3 className="font-semibold text-gray-700 text-lg">Follow Us</h3>
             <div className="flex space-x-4 mt-1">
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="p-2 bg-white rounded-full shadow hover:bg-rose-500 hover:text-white transition">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 bg-white rounded-full shadow hover:bg-rose-500 hover:text-white transition"
+              >
                 <FaFacebookF />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 bg-white rounded-full shadow hover:bg-rose-500 hover:text-white transition">
+
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 bg-white rounded-full shadow hover:bg-rose-500 hover:text-white transition"
+              >
                 <FaTwitter />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="p-2 bg-white rounded-full shadow hover:bg-rose-500 hover:text-white transition">
+
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 bg-white rounded-full shadow hover:bg-rose-500 hover:text-white transition"
+              >
                 <FaInstagram />
               </a>
             </div>
           </div>
 
         </div>
+
+       
         <div className="mt-12 border-t border-gray-200 pt-4 text-center text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} WarmPaws. All Rights Reserved.
+          © {new Date().getFullYear()} WarmPaws 🐾 — Caring for your pets with love.
         </div>
+
       </div>
     </footer>
   );

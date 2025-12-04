@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
+import ExpertVets from "../ExpertVets/ExpertVets";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0 },
+};
 
 const About = () => {
   const [loading, setLoading] = useState(true);
@@ -12,61 +19,90 @@ const About = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen py-16 px-5 bg-white text-gray-900">
+    <div className="min-h-screen py-16 px-5 bg-gradient-to-br from-blue-50 to-white text-gray-900">
       <div className="max-w-6xl mx-auto">
 
-        <h1 className="text-4xl font-bold text-center mb-6 text-gray-900">
+        {/* Heading */}
+        <motion.h1
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-extrabold text-center mb-6"
+        >
           About <span className="text-blue-600">WarmPaws</span>
-        </h1>
+        </motion.h1>
 
-        <p className="text-center max-w-3xl mx-auto text-gray-600 mb-12">
-          WarmPaws is a winter pet care platform designed to keep your furry friends warm,
-          healthy, and happy. From professional grooming to premium winter pet clothing,
-          we provide everything your pet needs during the cold season.
-        </p>
+        {/* Description */}
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-3xl mx-auto text-gray-600 mb-12 leading-relaxed"
+        >
+          WarmPaws is a trusted winter pet care platform dedicated to keeping your furry friends
+          warm, healthy, and safe during the cold season. From premium winter clothing to expert
+          grooming and care services — we ensure your pets stay cozy and protected.
+        </motion.p>
 
         {/* Mission & Vision */}
         <div className="grid md:grid-cols-2 gap-10 mt-10">
-          <div className="p-6 bg-white shadow rounded-lg border border-gray-200">
-            <h2 className="text-2xl font-semibold mb-3 text-gray-900">Our Mission</h2>
-            <p className="text-gray-600">
-              Our mission is to provide trusted winter care services and expert guidance to ensure
-              pets stay warm and protected throughout the cold months.
+          
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="p-6 bg-white shadow-lg rounded-xl border border-gray-200"
+          >
+            <h2 className="text-2xl font-semibold mb-3">Our Mission</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To provide trusted winter care services, expert guidance, and top-quality grooming
+              ensuring your pets stay warm, safe, and comfortable throughout the cold months.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="p-6 bg-white shadow rounded-lg border border-gray-200">
-            <h2 className="text-2xl font-semibold mb-3 text-gray-900">Our Vision</h2>
-            <p className="text-gray-600">
-              To become the most reliable winter pet care platform by offering premium-quality
-              services, high standards of safety, and expert consultation.
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="p-6 bg-white shadow-lg rounded-xl border border-gray-200"
+          >
+            <h2 className="text-2xl font-semibold mb-3">Our Vision</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To become the most reliable and premium winter pet care platform offering quality
+              services, comfort, safety, and expert consultation for every beloved pet.
             </p>
-          </div>
+          </motion.div>
+
         </div>
 
-        {/* Team Section */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
-            Meet Our Team
-          </h2>
+        {/* Expert Team Section */}
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-3xl font-bold text-center mt-20 mb-10"
+        >
+          Meet Our Expert Vets
+        </motion.h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="p-6 bg-white shadow rounded-lg text-center border border-gray-200"
-              >
-                <img
-                  src={`https://i.pravatar.cc/150?img=${item + 10}`}
-                  alt="team"
-                  className="w-24 h-24 rounded-full object-cover mx-auto mb-4"
-                />
-                <h3 className="text-xl font-semibold text-gray-900">Expert Vet {item}</h3>
-                <p className="text-gray-600">Winter Pet Specialist</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Reuse Existing Component */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+        >
+          <ExpertVets />
+        </motion.div>
 
       </div>
     </div>

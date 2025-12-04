@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import HeroSlider from "../../Components/Slider/HeroSlider";
 import HeroCards from "../../Components/HeroCards/HeroCards";
 import WinterTips from "../../Components/WinterTips/WinterTips";
-import ExpertVets from "../ExpertVets/ExpertVets";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 import WhyChooseUs from "../../Components/WhyChooseUs/WhyChooseUs";
+import Newsletter from "../../Components/Newsletter/Newsletter"; 
+import ReviewSection from "../../Components/ReviewSection/ReviewSection";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -18,15 +19,19 @@ const Home = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen overflow-hidden">
+    <div className=" min-h-screen overflow-hidden">
+      
+      {/* HERO SECTION */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        className="my-15"
       >
         <HeroSlider />
       </motion.div>
 
+      {/* POPULAR SERVICES */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -40,47 +45,55 @@ const Home = () => {
         <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
           Keep your furry friends warm, happy, and healthy this season with our trusted care services.
         </p>
-        <HeroCards limit={6} showSeeAllButton={true} />
+        <HeroCards limit={8} showSeeAllButton={true} />
       </motion.section>
 
+      {/* WINTER TIPS */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="mt-20"
+        className="mt-0"
       >
         <WinterTips />
       </motion.section>
 
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mt-20"
-      >
-        <ExpertVets />
-      </motion.section>
 
+      {/* WHY CHOOSE US */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.9 }}
-        className="mt-20 pb-16"
+        className="mt-10"
       >
         <WhyChooseUs />
       </motion.section>
 
-      <motion.footer
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="text-center text-gray-500 text-sm py-6"
+      {/* Review Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="mt-10"
       >
-        © {new Date().getFullYear()} WarmPaws 🐾 — Caring for your pets with love.
-      </motion.footer>
+        <ReviewSection />
+      </motion.section>
+
+      {/* NEWSLETTER SECTION */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.1 }}
+        className="mt-10"
+      >
+        <Newsletter />
+      </motion.section>
+
+      
     </div>
   );
 };

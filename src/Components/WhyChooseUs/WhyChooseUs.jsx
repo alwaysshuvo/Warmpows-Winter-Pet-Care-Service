@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
   const features = [
@@ -20,24 +21,49 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="bg-white mt-10 py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold text-blue-800 mb-6">Why Choose Us?</h2>
-        <p className="text-gray-600 mb-10">
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-bold text-blue-800 mb-3"
+        >
+          Why Choose Us?
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-gray-600 mb-10"
+        >
           Discover what makes WarmPaws the best choice for winter pet care.
-        </p>
+        </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center border border-gray-200">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 
+              hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
               <img
                 src={feature.img}
                 alt={feature.title}
-                className="mb-4 rounded-lg w-24 h-24 object-cover"
+                className="mb-4 rounded-lg w-24 h-24 object-cover mx-auto"
               />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {feature.title}
+              </h3>
+
               <p className="text-gray-600">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

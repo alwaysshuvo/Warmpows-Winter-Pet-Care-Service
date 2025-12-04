@@ -3,7 +3,7 @@ import winterTips from "../../data/WinterTips/winterTips";
 
 const WinterTips = () => {
   return (
-    <div className="bg-gray-50 py-16 px-6">
+    <div className="bg-gray-50 py-16 px-2">
       <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
         🐾 Winter Care Tips for Pets
       </h2>

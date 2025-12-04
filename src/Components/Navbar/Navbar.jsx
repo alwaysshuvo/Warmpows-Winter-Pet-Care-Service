@@ -44,11 +44,11 @@ const Navbar = () => {
 
             <Link to="/" className="flex items-center space-x-2">
               <img
-                className="h-10 w-10 rounded-full object-cover"
-                src="https://i.ibb.co.com/FkDbms56/1761128128767.png"
+                className="h-15 w-15 rounded-full object-cover"
+                src="https://i.ibb.co.com/RpRsWh80/Logo-removebg-preview.png"
                 alt="Logo"
               />
-              <h2 className="text-xl font-bold text-gray-900">
+              <h2 className="text-xl font-bold text-gray-900 -ml-5">
                 Warm<span className="text-blue-600">Paws</span>
               </h2>
             </Link>
